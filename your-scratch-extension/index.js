@@ -24,8 +24,8 @@ class Scratch3YourExtension {
             color2: '#660066', //Border Color
 
             // icons to display
-            blockIconURL: 'your-extension-icon.jpg',
-            menuIconURL: 'your-extension-background.jpg',
+            blockIconURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
+            menuIconURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
 
             // your Scratch blocks
             blocks: [
