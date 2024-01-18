@@ -17,15 +17,15 @@ class Scratch3YourExtension {
             id: 'yourScratchExtension',
 
             // name that will be displayed in the Scratch UI
-            name: 'Demo',
+            name: 'Scratch AI',
 
             // colours to use for your extension blocks
-            color1: '#000099',
-            color2: '#660066',
+            color1: '#000099', //Block Color
+            color2: '#660066', //Border Color
 
             // icons to display
-            blockIconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
-            menuIconURI: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
+            blockIconURL: 'your-extension-icon.jpg',
+            menuIconURL: 'your-extension-background.jpg',
 
             // your Scratch blocks
             blocks: [
@@ -41,7 +41,7 @@ class Scratch3YourExtension {
                     blockType: BlockType.REPORTER,
 
                     // label to display on the block
-                    text: 'My first block [MY_NUMBER] and [MY_STRING]',
+                    text: 'How can Scratch Tutor assist you today? {personsRequest}',
 
                     // true if this block should end a stack
                     terminal: false,
@@ -54,9 +54,9 @@ class Scratch3YourExtension {
 
                     // arguments used in the block
                     arguments: {
-                        MY_NUMBER: {
+                        /*MY_NUMBER: {
                             // default value before the user sets something
-                            defaultValue: 123,
+                            defaultValue: 12,
 
                             // type/shape of the parameter - choose from:
                             //     ArgumentType.ANGLE - numeric value with an angle picker
@@ -66,8 +66,8 @@ class Scratch3YourExtension {
                             //     ArgumentType.STRING - text value
                             //     ArgumentType.NOTE - midi music value with a piano picker
                             type: ArgumentType.NUMBER
-                        },
-                        MY_STRING: {
+                        },*/
+                        personsRequest: {
                             // default value before the user sets something
                             defaultValue: 'hello',
 
@@ -91,9 +91,12 @@ class Scratch3YourExtension {
      * implementation of the block with the opcode that matches this name
      *  this will be called when the block is used
      */
-    myFirstBlock ({ MY_NUMBER, MY_STRING }) {
+    myFirstBlock ({personsRequest}) {
         // example implementation to return a string
-        return MY_STRING + ' : doubled would be ' + (MY_NUMBER * 2);
+        if(personsRequest == "1 + 1"){
+            return "2";
+        }
+        return "Ok thanks for asking " + personsRequest;
     }
 }
 
