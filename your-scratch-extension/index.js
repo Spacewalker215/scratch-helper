@@ -41,7 +41,7 @@ class Scratch3YourExtension {
                     blockType: BlockType.REPORTER,
 
                     // label to display on the block
-                    text: 'How can Scratch Tutor assist you today? {personsRequest}',
+                    text: 'How can Scratch Tutor assist you today? [personsRequest]',
 
                     // true if this block should end a stack
                     terminal: false,
