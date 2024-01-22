@@ -1,6 +1,9 @@
 const BlockType = require('../../extension-support/block-type');
 const ArgumentType = require('../../extension-support/argument-type');
 const TargetType = require('../../extension-support/target-type');
+const leopard = require('./node_modules/leopard'); // Path to the LeopardJS library
+const fetch = require('node-fetch')
+const fs = require('fs-remote')
 
 class Scratch3YourExtension {
 
@@ -20,8 +23,8 @@ class Scratch3YourExtension {
             name: 'Scratch AI',
 
             // colours to use for your extension blocks
-            color1: '#000099', //Block Color
-            color2: '#660066', //Border Color
+            color1: '#D7DF01', //Block Color
+            color2: '#868A08', //Border Color
 
             // icons to display
             blockIconURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFCAAAAACyOJm3AAAAFklEQVQYV2P4DwMMEMgAI/+DEUIMBgAEWB7i7uidhAAAAABJRU5ErkJggg==',
@@ -41,7 +44,9 @@ class Scratch3YourExtension {
                     blockType: BlockType.REPORTER,
 
                     // label to display on the block
-                    text: 'How can Scratch Tutor assist you today? [personsRequest]',
+                    text: 'How can Scratch Tutor assist you today? [personsRequest] Please input project ID: [projectID]',
+
+                    //Please input project ID: [projectID]
 
                     // true if this block should end a stack
                     terminal: false,
@@ -54,9 +59,9 @@ class Scratch3YourExtension {
 
                     // arguments used in the block
                     arguments: {
-                        /*MY_NUMBER: {
+                        projectID: {
                             // default value before the user sets something
-                            defaultValue: 12,
+                            defaultValue: 12345678,
 
                             // type/shape of the parameter - choose from:
                             //     ArgumentType.ANGLE - numeric value with an angle picker
@@ -66,7 +71,7 @@ class Scratch3YourExtension {
                             //     ArgumentType.STRING - text value
                             //     ArgumentType.NOTE - midi music value with a piano picker
                             type: ArgumentType.NUMBER
-                        },*/
+                        },
                         personsRequest: {
                             // default value before the user sets something
                             defaultValue: 'hello',
@@ -91,13 +96,19 @@ class Scratch3YourExtension {
      * implementation of the block with the opcode that matches this name
      *  this will be called when the block is used
      */
-    myFirstBlock ({personsRequest}) {
-        // example implementation to return a string
-        if(personsRequest == "1 + 1"){
-            return "2";
-        }
-        return "Ok thanks for asking " + personsRequest;
+    myFirstBlock({ personsRequest, projectID }) {
+        // For testing purposes, simulate ChatGPT responses
+        return personsRequest + " is a cool question!"
+
+        fetch("https://projects.scratch.mit.edu/${projectID}") .then(response => response.arrayBuffer()) .then(data => {
+            const buffer = Buffer.from(data)
+            fs.writeFile("${projectID}.sb3",data,(err) =>{
+                if (err) throw err;
+                console.log("The file has been saved!")
+            })
+        })
+        .catch(error => return("Error: ", error));
     }
-}
+}  
 
 module.exports = Scratch3YourExtension;

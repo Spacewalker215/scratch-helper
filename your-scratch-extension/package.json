@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "fs-remote": "^0.1.9",
+    "leopard": "^1.5.2"
+  }
+}
